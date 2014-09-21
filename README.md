@@ -3,7 +3,7 @@ Flowers Creative System
 
 backbone做交互，php写jsonp接口，功能包含搜索、分页、分类、添加、删除、修改、上传图片、缩略图、上传视频、附件大小、二维码……
 
-<p><img src="https://github.com/stormtea123/raw/master/demo.png" alt="demo" width="520" height="280"></p>
+<p><img src="https://raw.githubusercontent.com/stormtea123/flowers/master/demo.png" alt="demo" width="520" height="280"></p>
 
 ###目录
 

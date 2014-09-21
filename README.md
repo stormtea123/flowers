@@ -7,7 +7,7 @@ backbone做交互，php写jsonp接口，功能包含搜索、分页、分类、�
 
 ###目录
 
-    examples/
+    flowers/
         |-- admin         PHP文件，需要修改数据库链接
         |-- build         打包压缩后的文件
         |-- app           开发文件

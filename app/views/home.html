@@ -1,0 +1,21 @@
+<ul class="goods_list clear" id="goods-list"></ul>
+<script type="text/html" id="template-goods">
+    <li class="goods_item">
+        <div class="goods_command">
+            <a href="#edit/{{id}}" class="goods_edit font" title="编辑">&#xe600;</a>
+            <a href="#delete/{{id}}" class="goods_delete font" title="删除">&#xe603;</a>
+        </div>
+        <a href="#single/{{id}}" title="{{title}}">
+            <div class="goods_pic">
+                <img class="goods_img" width="240" height="360" data-url="" src="{{imgUrl_240x360}}" alt="{{title}}">
+                <div class="goods_info">
+                    <p class="goods_tag">Tag：{{tag}}</p>
+                    <p class="goods_time">Time：{{time}}</p>
+                    <p class="goods_size">Size：{{imgSize/1000}}kb</p>
+                </div>
+            </div>
+            <h2 class="goods_name">{{title}}</h2>
+        </a>
+    </li>
+</script>
+<div class="page_navgation" id="page-navgation"></div>

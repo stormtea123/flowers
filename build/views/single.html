@@ -1,0 +1,27 @@
+<div class="page module" id="page">
+	<script type="text/html" id="template-page">
+		<div class="module_hd">
+			<h1 class="module_hd_title">{{title}}</h1>
+		</div>
+		<div class="module_bd">
+			<div class="page_img" style="display:none;"><img src="{{imgUrl_560x315}}"></div>
+			<div class="page_video" style="display:none;">
+				<video id='video' controls preload='none' poster="{{imgUrl_560x315}}">
+					<source id='mp4' src="{{videoUrl}}" type='video/mp4'>
+				</video>
+				<p>视频地址：<a href="{{videoUrl}}" target="_blank">{{videoUrl}}</a><br />
+				视频大小：{{videoSize/1000}}KB</p>
+			</div>
+
+			<div class="page_demo" style="display:none;">
+				<p id="qrcode"></p>
+				<p>Demo地址：<a href="{{demoAddress}}" target="_blank">{{demoAddress}}</a></p>
+			</div>
+			<div class="page_summary" style="display:none;">
+				<p>{{summary}}</p>
+			</div>
+			<div class="page_bar">标签：{{tag}}&nbsp;/&nbsp;时间：{{time}}</div>
+		</div>
+	</script>
+</div>
+

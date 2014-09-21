@@ -1,0 +1,15 @@
+
+assets/style.css
+----------------
+assets/style.css
+
+main.js
+----------------
+assets/lib/jquery.min.js
+assets/lib/underscore.js
+assets/lib/backbone.js
+models/template.js
+init.js
+assets/lib/qrcode.js
+app.js
+main.js

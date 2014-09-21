@@ -1,0 +1,80 @@
+<div class="module_form module">
+	<div class="module_hd">
+		<h1 class="module_hd_title">Make New</h1>
+	</div>
+	<form id="create-form">
+		<table width="620">
+			<tr>
+				<td><input class="create_text " name="title" type="text" size="30" placeholder="在这里输入标题"></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="radio" name="category" value="1" id="for-pc"><label for="for-pc">PC</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="category" value="2" id="for-mobile"><label for="for-mobile">Mobile</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input class="create_text " type="text" name="tag" placeholder="动画">&nbsp;<span class="module_tip">多个标签用空格或分号分割</span>
+				</td>
+			</tr>
+			<tr>
+				<td><textarea class="create_text  create_textarea" name="summary" type="text" size="30" placeholder="感觉自己萌萌哒！"></textarea></td>
+			</tr>
+			<tr>
+				<td><input class="create_text " type="text" size="40" name="demoAddress" placeholder="http://www.baidu.com"></td>
+			</tr>
+		</table>
+	</form>
+	<form target="uploadVideoHide" action="http://ppms.paipaioa.com/wht/admin/uploadVideo.php" method="post" enctype="multipart/form-data">
+		<div class="video_result" id="video-result"></div>
+		<table width="620">
+			<tr>
+				<td><input type="file" name="video" id="video">
+				</td>
+			</tr>
+			<tr>
+				<td><input class="btn btn_normal upload" type="submit" value="上传视频"></input></td>
+			</tr>
+		</table>
+	</form>
+	<form  target="uploadImageHide" action="http://ppms.paipaioa.com/wht/admin/uploadImg.php" method="post" enctype="multipart/form-data">
+		<div class="img_result" id="img-result"></div>
+		<table width="620">
+			<tr>
+				<td><input type="file" name="url" id="url"><input type="hidden" name="MAX_FILE_SIZE" value="1000000">
+					<div class="img_preview"><img id="img-preview-img" src="http://dummyimage.com/240x135/f6f6f6/fff" alt="" width="240" height="135"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><input class="btn btn_normal upload" type="submit" value="上传图片"></input></td>
+			</tr>
+		</table>
+	</form>
+	<table width="620">
+		<tr>
+			<td><button class="btn btn_success save">保存</button></td>
+		</tr>
+	</table>
+	<iframe src=""  width="0" height="0" style="display:none;" name="uploadVideoHide"></iframe>
+	<iframe src=""  width="0" height="0" style="display:none;" name="uploadImageHide"></iframe>
+</div>
+<script stype="text/javascript">
+function uploadVideoOption(options) {
+    videoUrl = options.video.url;
+    videoSize = options.video.size;
+    document.getElementById("video-result").innerHTML = videoUrl + '&nbsp;('+parseInt(videoSize)/1000+'kb)'
+    if (options.video.status == "sucess"){
+        alert("视频上传成功！")
+    }
+}
+//图片上传回调
+function uploadImgOption(options) {
+    imgUrl = options.img.url;
+    imgSize = options.img.size;
+    var imgUrlSuffix = imgUrl.substr(imgUrl.lastIndexOf("."));
+    document.getElementById("img-preview-img").src=imgUrl.split(imgUrlSuffix)[0]+"_560x315"+imgUrlSuffix;
+    var imgUrlSuffix = imgUrl.substr(imgUrl.lastIndexOf("."));
+    document.getElementById("img-result").innerHTML = imgUrl + '&nbsp;('+parseInt(imgSize)/1000+'kb)'
+}
+</script>

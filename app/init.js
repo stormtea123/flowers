@@ -71,9 +71,10 @@ define([
 	$("#search_input").bind("keyup",function(event){
 		//event.preventDefault();
 		if (event.keyCode == "13"){
+			var keyword = $(this).val();
 			categoryNum = 0;
 			$.ajax({
-			    url: "http://ppms.paipaioa.com/wht/admin/search.php?page=1&count="+count+"&keyword=" + $(this).val(),
+			    url: "http://ppms.paipaioa.com/wht/admin/search.php?page=1&count="+count+"&keyword=" + keyword,
 			    dataType: "jsonp"
 			}).done(function(data) {
 				if (parseInt(data["count"])>0){
@@ -83,7 +84,7 @@ define([
 						var pagesNum = Math.ceil(parseInt(data["count"]) / count);
 						var pageNavgations = []
 						for (var i = 0; i < pagesNum; i++) {
-						    pageNavgations[i] = '<a href="#page/' + (i + 1) + '/' + count + '" class="page_navgation_item">' + (i + 1) + '</a>'
+						    pageNavgations[i] = '<a href="#search/'+keyword+'/' + (i + 1) + '/' + count + '" class="page_navgation_item">' + (i + 1) + '</a>'
 						}
 						$("#page-navgation").html(pageNavgations.join(""));
 						$("#page-navgation .page_navgation_item").eq(0).addClass("current");

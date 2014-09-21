@@ -4,7 +4,7 @@ define([
     'backbone',
     'template',
     'qrcode'
-], function($, _, Backbone, Template,QRCode) {
+], function($, _, Backbone, Template, QRCode) {
     var $module = $('#main');
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -13,7 +13,8 @@ define([
             'about': 'about',
             'create': 'create',
             'single/:id': 'single',
-            'page/:cateogry/:which/:count': 'categoryPage',
+            'category/:id/:which/:count': 'categoryPage',
+            'search/:keyword/:which/:count': 'searchPage',
             'page/:which/:count': 'page',
             'edit/:id': 'edit'
         },
@@ -57,7 +58,7 @@ define([
                     var pagesNum = Math.ceil(parseInt(initData["count"]) / count);
                     var pageNavgations = []
                     for (var i = 0; i < pagesNum; i++) {
-                        pageNavgations[i] = '<a href="#page/' + (i + 1) + '/' + count + '" class="page_navgation_item">' + (i + 1) + '</a>'
+                        pageNavgations[i] = '<a href="#category/' + id + '/' + (i + 1) + '/' + count + '" class="page_navgation_item">' + (i + 1) + '</a>'
                     }
                     $("#page-navgation").html(pageNavgations.join(""));
                     new Template.render("goods-list", initData["content"], "template-goods");
@@ -65,12 +66,12 @@ define([
                 });
             });
         },
-        categoryPage: function(category, which, count) {
+        categoryPage: function(id, which, count) {
             isShowReturn();
             $.get('app/views/home.html', function(templateData) {
                 $module.html(templateData);
                 $.ajax({
-                    url: "http://ppms.paipaioa.com/wht/admin/getAll.php?category" + category + "page=" + which + "&count=" + count,
+                    url: "http://ppms.paipaioa.com/wht/admin/getAll.php?category=" + id + "&page=" + which + "&count=" + count,
                     dataType: "jsonp"
                 }).done(function(defaultData) {
                     new Template.render("goods-list", defaultData["content"], "template-goods");
@@ -78,10 +79,31 @@ define([
                     var pagesNum = Math.ceil(parseInt(defaultData["count"]) / count);
                     var pageNavgations = []
                     for (var i = 0; i < pagesNum; i++) {
-                        pageNavgations[i] = '<a href="#page/' + (i + 1) + '/' + count + '" class="page_navgation_item">' + (i + 1) + '</a>'
+                        pageNavgations[i] = '<a href="#category/' + id + '/' + (i + 1) + '/' + count + '" class="page_navgation_item">' + (i + 1) + '</a>'
                     }
                     $("#page-navgation").html(pageNavgations.join(""));
-                    $("#page-navgation .page_navgation_item").eq(which-1).addClass("current");
+                    $("#page-navgation .page_navgation_item").eq(which - 1).addClass("current");
+
+                })
+            })
+        },
+        searchPage: function(keyword, which, count) {
+            isShowReturn();
+            $.get('app/views/home.html', function(templateData) {
+                $module.html(templateData);
+                $.ajax({
+                    url: "http://ppms.paipaioa.com/wht/admin/search.php?page=" + which + "&count=" + count + "&keyword=" + keyword,
+                    dataType: "jsonp"
+                }).done(function(defaultData) {
+                    new Template.render("goods-list", defaultData["content"], "template-goods");
+                    //分页导航
+                    var pagesNum = Math.ceil(parseInt(defaultData["count"]) / count);
+                    var pageNavgations = []
+                    for (var i = 0; i < pagesNum; i++) {
+                        pageNavgations[i] = '<a href="#search/' + keyword + '/' + (i+1) + '/' + count + '" class="page_navgation_item">' + (i + 1) + '</a>'
+                    }
+                    $("#page-navgation").html(pageNavgations.join(""));
+                    $("#page-navgation .page_navgation_item").eq(which - 1).addClass("current");
 
                 })
             })
@@ -103,7 +125,7 @@ define([
                     }
                     console.log(defaultData)
                     $("#page-navgation").html(pageNavgations.join(""));
-                    $("#page-navgation .page_navgation_item").eq(which-1).addClass("current");
+                    $("#page-navgation .page_navgation_item").eq(which - 1).addClass("current");
 
                 })
             })
@@ -134,8 +156,8 @@ define([
                         $(".page_demo").show();
                         //二维码
                         var qrcode = new QRCode(document.getElementById("qrcode"), {
-                            width : 150,
-                            height : 150
+                            width: 150,
+                            height: 150
                         });
                         qrcode.makeCode(data.content[0]["demoAddress"]);
                     }

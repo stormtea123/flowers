@@ -84,7 +84,7 @@ button, input { margin:0; }
 .goods_item a { color:#999; }
 .goods_pic { position:relative; width:240px; height:360px; z-index:1; }
 .goods_info { position:absolute; left:0; right:0; bottom:0; padding:8px 10px; line-height:20px; font-size:12px;  background:rgba(0,0,0,0.7); }
-.goods_name { padding:5px 0; font-size:14px; color:#333; }
+.goods_name { height:20px; overflow:hidden; padding:5px 0; font-size:14px; color:#333; }
 .goods_command { display:none; position:absolute; top:0; right:0; z-index:2; background:rgba(255,255,255,0.4); }
 .goods_command a { padding:2px 5px; color:#333; font-size:16px; }
 .goods_command a:hover { color:rgba(202,22,35,1); text-decoration:none; }

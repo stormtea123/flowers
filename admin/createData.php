@@ -1,6 +1,6 @@
 <?php
     header('content-type: application/json; charset=utf-8');
-    $link = mysql_connect('localhost', 'ppms', 'ppms');
+    $link = mysql_connect('localhost', 'name', 'password');
     mysql_query("SET NAMES 'UTF8'");
     if (!$link) {
         die('链接失败：' . mysql_error());
